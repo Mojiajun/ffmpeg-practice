@@ -68,7 +68,7 @@ static void decode(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt, FILE 
             fwrite(frame->data[2] + frame->linesize[2] * i, 1, frame->width/2, fp_out);
         }
 
-        printf("frame width is %d, frame height is %d", frame->width, frame->height);
+        printf("frame width is %d, frame height is %d    ", frame->width, frame->height);
         printf("Succeed to decode 1 frame!\n");
     }
 }
@@ -169,7 +169,7 @@ int main(int argc, char **argv)
             data_size -= ret;
             if (first_time) {
                 printf("\nCodec Full Name:%s\n", avcodecctx->codec->long_name);
-                printf("width:%d\nheight:%d\n\n", avcodecctx->width, avcodecctx->height);
+                printf("width:%d\nheight:%d\n\n", avcodecctx->width, avcodecctx->height);//貌似这里的输出是0, 0, 应该是没填这两个域
                 first_time=0;
             }
             if (pkt->size) { //if result of av_parser_parse2() is a complete packet.
@@ -177,7 +177,8 @@ int main(int argc, char **argv)
                 printf("[Packet]Size:%6d\t",pkt->size);
                 switch(parser->pict_type){
                     case AV_PICTURE_TYPE_I: printf("Type:I\t");break;
-                    case AV_PICTURE_TYPE_P: printf("Type:P\t");break; case AV_PICTURE_TYPE_B: printf("Type:B\t");break;
+                    case AV_PICTURE_TYPE_P: printf("Type:P\t");break;
+                    case AV_PICTURE_TYPE_B: printf("Type:B\t");break;
                     default: printf("Type:Other\t");break;
                 }
                 printf("Number:%4d\n",parser->output_picture_number);
