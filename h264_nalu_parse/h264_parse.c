@@ -237,6 +237,8 @@ int simplest_h264_parser(char *url) {
         }
         free (n);
     }
+
+    fclose(h264bitstream);
     return 0;
 }
 
