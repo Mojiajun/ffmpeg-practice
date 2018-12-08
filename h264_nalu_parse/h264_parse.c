@@ -200,7 +200,7 @@ int simplest_h264_parser(char *url) {
         data_lenth=GetAnnexbNALU(n);
 
         char type_str[20]={0};
-        switch(n->nal_unit_type {
+        switch(n->nal_unit_type) {
             case NALU_TYPE_SLICE:sprintf(type_str,"SLICE");break;
             case NALU_TYPE_DPA:sprintf(type_str,"DPA");break;
             case NALU_TYPE_DPB:sprintf(type_str,"DPB");break;
